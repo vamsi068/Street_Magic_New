@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reports - Street Magic</title>
+  <link rel="stylesheet" href="css/report.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <div class="logo">Street Magic</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="orders.html">Orders</a></li>
+      <li><a href="purchase.html">Purchase</a></li>
+      <li><a href="report.html" class="active">Reports</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <h2>Sales Report</h2>
+
+  <!-- Filters -->
+  <div class="filters">
+    <label>From: <input type="date" id="startDate"></label>
+    <label>To: <input type="date" id="endDate"></label>
+    <label>Category:
+      <select id="categoryFilter">
+        <option value="all">All</option>
+      </select>
+    </label>
+    <button id="applyFilters">Apply</button>
+  </div>
+
+  <!-- Expenses Settings -->
+  <section class="settings-section">
+    <h3>Expenses Settings</h3>
+    <div class="expense-form">
+
+      <label>Salary (Daily): 
+        <input type="number" id="salaryInput" min="0" />
+      </label>
+
+      <label>Rent (Monthly): 
+        <input type="number" id="rentInput" min="0" />
+      </label>
+
+      <label>Power Bill (Monthly): 
+        <input type="number" id="powerInput" min="0" />
+      </label>
+
+      <label>OthersExpances (Monthly): 
+        <input type="number" id="salaryMonthlyInput" min="0" />
+      </label>
+
+      <button id="saveExpenses" class="btn primary">Save Expenses</button>
+
+    </div>
+  </section>
+
+  <!-- Default Stats -->
+  <section class="records-section">
+    <h3>Sales Overview</h3>
+    <div class="summary-cards-grid">
+
+      <div class="summary-card yellow">
+        <h4>Today's Sales</h4>
+        <p>₹<span id="todaySales">0</span></p>
+      </div>
+
+      <div class="summary-card green">
+        <h4>This Month's Sales</h4>
+        <p>₹<span id="monthSales">0</span></p>
+      </div>
+
+      <div class="summary-card blue">
+        <h4>Daily Average</h4>
+        <p>₹<span id="dailyAvg">0</span></p>
+      </div>
+
+      <div class="summary-card gray">
+        <h4>Total Transactions</h4>
+        <p><span id="transactionCount">0</span></p>
+      </div>
+
+      <div class="summary-card yellow">
+        <h4>Last Month Sales</h4>
+        <p>₹<span id="lastMonthSales">0</span></p>
+      </div>
+
+      <div class="summary-card green">
+        <h4>Last Month Transactions</h4>
+        <p><span id="lastMonthCount">0</span></p>
+      </div>
+
+      <!-- Today Purchase -->
+      <div class="summary-card purple">
+        <h4>Today's Purchase</h4>
+        <p>₹<span id="todayPurchase">0</span></p>
+      </div>
+
+      <!-- Today Profit / Loss -->
+      <div class="summary-card orange">
+        <h4>Today's Profit / Loss</h4>
+        <p id="todayProfitLoss">₹0</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Expenses Overview -->
+  <section class="records-section">
+    <h3>Expenses Overview</h3>
+    <div class="summary-cards-grid">
+
+      <div class="summary-card red">
+        <h4>Salary (Daily)</h4>
+        <p>₹<span id="salaryExpense">0</span></p>
+      </div>
+
+      <div class="summary-card red">
+        <h4>Rent (Daily Avg)</h4>
+        <p>₹<span id="rentExpense">0</span></p>
+      </div>
+      
+      <div class="summary-card red">
+        <h4>Power Bill (Daily Avg)</h4>
+        <p>₹<span id="powerExpense">0</span></p>
+      </div>
+
+      <div class="summary-card red">
+        <h4>OthersExpances (Daily Avg)</h4>
+        <p>₹<span id="OthersExpances">0</span></p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Filtered Stats -->
+  <section class="records-section">
+    <h3>Filtered Overview</h3>
+    <div class="summary-cards-grid">
+
+      <div class="summary-card yellow">
+        <h4>Total Sales (Filtered)</h4>
+        <p>₹<span id="filteredSales">0</span></p>
+      </div>
+
+      <div class="summary-card green">
+        <h4>Total Transactions (Filtered)</h4>
+        <p><span id="filteredTransactions">0</span></p>
+      </div>
+
+      <div class="summary-card blue">
+        <h4>Daily Average (Filtered)</h4>
+        <p>₹<span id="filteredDailyAvg">0</span></p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Transactions Section -->
+  <section class="records-section">
+    <h3>Transactions</h3>
+    <button id="showTransactions" class="btn">Show Transactions</button>
+    <div id="transactionOptions" style="display:none; margin-top:10px;">
+      <select id="transactionRange">
+        <option value="custom">Custom</option>
+        <option value="today">Today</option>
+        <option value="yesterday">Yesterday</option>
+        <option value="7d">Last 7 Days</option>
+        <option value="30d">Last 30 Days</option>
+        <option value="6m">Last 6 Months</option>
+      </select>
+      
+      <div id="customRange" style="display:none; margin-top:8px;">
+        <label>From: <input type="date" id="customStart"></label>
+        <label>To: <input type="date" id="customEnd"></label>
+        <button id="applyCustomRange">Apply</button>
+      </div>
+      
+      <div id="transactionList" style="margin-top:15px;"></div>
+      
+    </div>
+  </section>
+
+  <section class="records-section" id="transactionOptions">
+    <h3>Transactions</h3>
+    <div class="filter-controls">
+      <label>From: <input type="date" id="txStartDate"></label>
+      <label>To: <input type="date" id="txEndDate"></label>
+      <label>Method:
+        <select id="txMethod">
+          <option value="all">All</option>
+          <option value="cash">Cash</option>
+          <option value="online">Online</option>
+        </select>
+      </label>
+      <button id="filterTransactions">Filter</button>
+      <button id="exportTransactions">⬇ Export CSV</button>
+    </div>
+    <div id="transactionList"></div>
+  </section>
+
+  <!-- Sales Chart -->
+  <h3>Sales Chart</h3>
+  <canvas id="salesChart"></canvas>
+
+  <!-- Sales Trend -->
+  <h3>Sales Trend</h3>
+  <div class="chart-toggle">
+    <button id="btn7d" class="active">7D</button>
+    <button id="btn6m">6M</button>
+  </div>
+  <canvas id="trendChart"></canvas>
+
+  <!-- Items Sold Trend -->
+  <h3>Items Sold Trend</h3>
+  <div class="chart-toggle">
+    <button id="btn7dItems" class="active">7D</button>
+    <button id="btn6mItems">6M</button>
+  </div>
+  <canvas id="trendItemsChart"></canvas>
+</main>
+
+<footer>
+  <p>&copy; 2025 Street Magic Restaurant</p>
+</footer>
+
+<script src="js/report.js"></script>
+</body>
+</html>

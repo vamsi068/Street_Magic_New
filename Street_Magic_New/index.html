@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Street Magic - Home</title>
+  <meta name="description" content="Street Magic - Delicious food, order management, billing, and reports all in one place.">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+  <!-- ✅ Header -->
+  <header class="bg-black text-white p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold">Street Magic</h1>
+    <nav class="space-x-4">
+      <a href="index.html" aria-current="page" class="nav-link text-blue-500 font-bold underline">Home</a>
+      <a href="menu.html" class="nav-link hover:underline">Menu</a>
+      <a href="orders.html" class="nav-link hover:underline">Orders</a>
+      <a href="purchase.html" class="nav-link hover:underline">Purchase</a>
+      <a href="report.html" class="nav-link hover:underline">Reports</a>
+    </nav>
+  </header>
+
+  <!-- ✅ Hero Section -->
+<section class="relative bg-[url('assets/images/hero-bg.jpg')] bg-cover bg-center min-h-[50vh] flex items-center justify-center mt-52">
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative z-10 text-center text-white px-4">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">Welcome to Street Magic 🍴</h2>
+      <p class="text-lg mb-6">Delicious food, seamless management — all in one place.</p>
+      <a href="menu.html" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition">
+        Explore Menu
+      </a>
+    </div>
+  </section>
+
+  <!-- ✅ Quick Links -->
+  <main class="p-6 text-center">
+    <h3 class="text-2xl font-bold mb-6">Quick Access</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-6 max-w-6xl mx-auto mb-12">
+      <a href="menu.html" class="bg-white rounded-xl shadow p-6 hover:shadow-lg transform hover:scale-105 transition">
+        <h3 class="text-xl font-semibold mb-2">📋 Menu</h3>
+        <p class="text-gray-600">Browse items, add to cart, and take new orders.</p>
+      </a>
+
+      <a href="orders.html" class="bg-white rounded-xl shadow p-6 hover:shadow-lg transform hover:scale-105 transition">
+        <h3 class="text-xl font-semibold mb-2">🧾 Orders</h3>
+        <p class="text-gray-600">View past orders and order history.</p>
+      </a>
+
+      <a href="purchase.html" class="bg-white rounded-xl shadow p-6 hover:shadow-lg transform hover:scale-105 transition">
+        <h3 class="text-xl font-semibold mb-2">🛒 Purchase</h3>
+        <p class="text-gray-600">Manage inventory and purchase details.</p>
+      </a>
+
+      <a href="report.html" class="bg-white rounded-xl shadow p-6 hover:shadow-lg transform hover:scale-105 transition">
+        <h3 class="text-xl font-semibold mb-2">📊 Reports</h3>
+        <p class="text-gray-600">Track sales reports and analytics.</p>
+      </a>
+    </div>
+
+    <!-- ✅ Today’s Specials -->
+    <h3 class="text-2xl font-bold mb-6">🍽️ Today’s Specials</h3>
+    <div id="specials-container" class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <!-- JS will inject specials -->
+    </div>
+  </main>
+
+  <!-- ✅ Footer -->
+  <footer class="bg-black text-white text-center p-4 mt-6">
+    <p>&copy; 2025 Street Magic Restaurant</p>
+  </footer>
+
+  <!-- ✅ JS -->
+  <script src="js/index.js"></script>
+</body>
+</html>

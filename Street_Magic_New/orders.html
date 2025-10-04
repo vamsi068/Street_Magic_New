@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Orders - Street Magic</title>
+  <link rel="stylesheet" href="css/orders.css"/>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <div class="logo">Street Magic</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="orders.html" class="active">Orders</a></li>
+      <li><a href="purchase.html">Purchase</a></li>
+      <li><a href="report.html">Reports</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <h2>Saved Orders</h2>
+
+  <!-- 🔹 Summary Section -->
+  <div id="summary" class="summary-cards"></div>
+
+  <!-- 🔹 Filter/Search Section -->
+  <div class="filter-bar">
+    <label>Date: <input type="date" id="orderDate"/></label>
+    <label>Bill No: <input type="text" id="billSearch" placeholder="e.g. 3945"/></label>
+    <label>Type:
+      <select id="typeFilter">
+        <option value="">All</option>
+        <option value="BILL">BILL</option>
+        <option value="KOT">KOT</option>
+        <option value="Online">Online</option>
+        <option value="Takeaway">Takeaway</option>
+        <option value="Dine-in">Dine-in</option>
+      </select>
+    </label>
+    <label>Min Amount: <input type="number" id="minAmount" placeholder="₹"/></label>
+    <label>Max Amount: <input type="number" id="maxAmount" placeholder="₹"/></label>
+    <label>Customer Name: <input type="text" id="custNameSearch" placeholder="e.g. John"/></label>
+    <label>Phone: <input type="text" id="custPhoneSearch" placeholder="e.g. 9876543210"/></label>
+    <button id="applyFilters">Apply</button>
+    <button id="clearFilter">Clear</button>
+  </div>
+
+  <!-- 🔹 Export & Backup -->
+  <div class="filter-bar">
+    <button id="exportPDF">Export PDF</button>
+    <button id="exportExcel">Export Excel</button>
+    <button id="backupOrders">Backup JSON</button>
+    <input type="file" id="restoreOrders" style="display:none;" />
+    <button id="restoreBtn">Restore JSON</button>
+  </div>
+
+  <div class="filter-bar">
+    <button id="resetOrders" style="background:red;color:white;">Reset Orders</button>
+  </div>
+
+  <!-- Orders List -->
+  <div id="ordersList"></div>
+
+  <!-- Pagination -->
+  <div id="pagination" style="margin-top:15px;text-align:center;"></div>
+</main>
+
+<footer>
+  <p>&copy; 2025 Street Magic Restaurant</p>
+</footer>
+
+<!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- SheetJS (XLSX) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<script src="js/orders.js"></script>
+</body>
+</html>

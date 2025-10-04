@@ -1,0 +1,255 @@
+@import url("index.css");
+
+/* ===== Inventory List ===== */
+#inventoryList p {
+  background: #fff;
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 4px;
+}
+
+/* ===== Purchase Form ===== */
+.purchase-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 15px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.purchase-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.purchase-form input,
+.purchase-form select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn.primary {
+  background: #e74c3c;
+  color: #fff;
+}
+.btn.primary:hover {
+  background: #c0392b;
+}
+
+/* ===== Filter Bar ===== */
+.filter-bar {
+  margin: 15px 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ===== Two-column layout ===== */
+.purchase-layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.summary-section,
+.records-section {
+  flex: 1;
+}
+
+/* ===== Shared Card Grid Style ===== */
+.summary-grid,
+.records-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.summary-card,
+.record-card {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.summary-card h4,
+.record-card h4 {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.summary-card p,
+.record-card p {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 6px 0 0;
+  color: #000;
+}
+
+.record-card small {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #777;
+}
+
+.record-card .actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.record-card button {
+  padding: 4px 8px;
+  font-size: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.record-card button.edit {
+  background: #007bff;
+  color: #fff;
+}
+
+.record-card button.delete {
+  background: #dc3545;
+  color: #fff;
+}
+
+/* ===== Summary Cards (Right Side) ===== */
+#totalSpentCard, 
+#todaySpentCard {
+  background: #fff3cd;
+  border: 1px solid #ffeeba;
+  color: #856404;
+  font-weight: bold;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+#todaySpentCard {
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+}
+
+#monthSpentCard {
+  background: #cce5ff;
+  border: 1px solid #b8daff;
+  color: #004085;
+  font-weight: bold;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+/* ===== Chart Card ===== */
+.chart-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+.chart-card h4 {
+  margin: 0 0 10px;
+  text-align: center;
+}
+.chart-card canvas { 
+  background: #fff; 
+  padding: 10px; 
+  width: 100% !important;
+  height: auto;          /* let Chart.js calculate height */
+  max-height: 500px;
+  min-height: 300px;     /* optional for very few bars */
+  border-radius: 8px; 
+  box-shadow: 0 0 5px rgba(0,0,0,0.1); 
+  display: block;
+  margin: 0 auto;
+}
+
+
+
+/* ===== Summary Cards Shared Style ===== */
+.summary-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin: 10px 0;
+}
+
+/* Match product summary with record summary */
+#inventorySummary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin-top: 10px;
+}
+
+#inventorySummary .summary-card {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+/* ===== Counter Badge ===== */
+.badge {
+  background: #007bff;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 12px;
+  margin-left: 8px;
+}
+.badge.secondary {
+  background: #28a745; /* green */
+}
+
+/* ===== Summary Item (extra styling) ===== */
+.summary-item {
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 8px;
+  background: #fafafa;
+  position: relative;
+}
+
+.summary-item .edit-btn {
+  margin-top: 8px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.summary-item .edit-btn:hover {
+  background: #0056b3;
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Street Magic - Purchases</title>
+  <link rel="stylesheet" href="css/purchase.css"/>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <div class="logo">Street Magic</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="orders.html">Orders</a></li>
+      <li><a href="purchase.html" class="active">Purchase</a></li>
+      <li><a href="report.html">Reports</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <h2>Purchases</h2>
+
+  <!-- Add / Update Form -->
+  <div class="purchase-form">
+    <button id="newItemBtn" class="btn">+ New Item</button>
+    <label>Product:
+      <select id="productSelect"></select>
+    </label>
+    <label>Quantity:
+      <input type="number" id="quantityInput" step="0.01" value="1">
+    </label>
+    <label>Price / unit (₹):
+      <input type="number" id="priceInput" min="0" value="0"/>
+    </label>
+    <button id="savePurchaseBtn" class="btn primary">Add / Update Purchase</button>
+  </div>
+
+  <!-- Filter -->
+  <div class="filter-bar">
+    <label for="filterDate">Filter by Date:</label>
+    <input type="date" id="filterDate"/>
+    <button id="applyFilterBtn">Apply Filter</button>
+    <button id="clearFilterBtn">Clear</button>
+  </div>
+
+  <!-- Products Summary -->
+  <section class="summary-section">
+    <h3>
+      Products Summary 
+      <span id="productCountBadge" class="badge"></span>
+      <span id="unitCountBadge" class="badge secondary"></span>
+    </h3>
+    <button id="resetInventoryBtn" class="btn reset">Reset All Units</button>
+    <div id="inventorySummary" class="summary-grid"></div>
+  </section>
+
+  <!-- All Purchase Records -->
+  <section class="records-section">
+    <h3>All Purchase Records</h3>
+
+    <div class="summary-cards-grid">
+      <div id="totalSpentCard" class="summary-card"></div>
+      <div id="todaySpentCard" class="summary-card"></div>
+      <div id="monthSpentCard" class="summary-card"></div>
+      <div id="lastMonthSpentCard" class="summary-card"></div>
+    </div>
+
+  </section>
+  
+  <div class="chart-card">
+    <h4>Products Purchase Overview</h4>
+    <canvas id="productChart"></canvas>
+  </div>
+
+  <!-- Purchases Overview (Chart) -->
+  <div class="chart-card">
+    <h4>Purchases Overview</h4>
+    <canvas id="purchaseChart"></canvas>
+  </div>
+
+  <div id="purchaseRecords" class="records-grid"></div>
+
+</main>
+
+<footer>
+  <p>&copy; 2025 Street Magic Restaurant</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/purchase.js"></script>
+</body>
+</html>

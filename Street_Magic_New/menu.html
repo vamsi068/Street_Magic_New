@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Street Magic - Menu</title>
+  <link rel="stylesheet" href="css/menu.css"/>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <div class="logo">Street Magic</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html" class="active">Menu</a></li>
+      <li><a href="orders.html">Orders</a></li>
+      <li><a href="purchase.html">Purchase</a></li>
+      <li><a href="report.html">Reports</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="menu-layout">
+  <!-- Quick Navigation -->
+  <aside class="quick-nav">
+    <h3>Quick Navigation</h3>
+    <ul id="categoryList"></ul>
+  </aside>
+
+  <!-- Menu Section -->
+  <section class="menu-section">
+    <div class="menu-header">
+      <h2>Our Menu</h2>
+      <div class="menu-controls">
+        <input type="text" id="menuSearch" placeholder="Search items..."/>
+        <button id="addMenuBtn">+ Add Menu</button>
+        <button onclick="toggleDark()">🌙 Dark Mode</button>
+      </div>
+    </div>
+
+    <!-- Modal for Adding/Editing Menu Item -->
+    <div id="menuModal" class="modal">
+      <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <h3 id="modalTitle">Add Menu Item</h3>
+
+        <label>Name:</label>
+        <input type="text" id="newItemName" placeholder="Item Name"/>
+
+        <label>Price (₹):</label>
+        <input type="number" id="newItemPrice" placeholder="Price"/>
+
+        <label>Category:</label>
+        <select id="newItemCategorySelect"></select>
+        <input type="text" id="newItemCategoryNew" placeholder="New Category" style="display:none;"/>
+        
+        <label>Subcategory:</label>
+        <select id="newItemSubcategorySelect"></select>
+        <input type="text" id="newItemSubcategoryNew" placeholder="New Subcategory" style="display:none;"/>
+
+        <!-- 🔹 Variants Section -->
+        <label>Variants (Size & Price):</label>
+        <div id="variantsContainer"></div>
+        <button type="button" id="addVariantBtn">+ Add Size</button>
+
+        <button id="saveMenuItem">Save</button>
+      </div>
+    </div>
+
+    <div id="menuItems"></div>
+  </section>
+
+  <!-- Cart Section -->
+  <aside class="cart-section">
+    <h3>Cart</h3>
+    <ul id="cartList"></ul>
+
+    <div class="cart-extra">
+      <label>Discount (₹):</label>
+      <input type="number" id="discountInput" value="0"/>
+    </div>
+
+    <div class="cart-extra">
+      <label>Tax %:</label>
+      <input type="number" id="taxInput" value="5"/>
+    </div>
+
+    <div class="cart-extra">
+      <label>Service Charge %:</label>
+      <input type="number" id="serviceInput" value="0"/>
+    </div>
+
+    <div class="cart-extra">
+      <p><strong>Final Total: ₹<span id="finalTotal">0</span></strong></p>
+    </div>
+
+    <div class="cart-extra vertical">
+      <label>Cash (₹):</label>
+      <input type="number" id="cashInput" value="0"/>
+      <label>Online (₹):</label>
+      <input type="number" id="onlineInput" value="0"/>
+    </div>
+
+    <div class="cart-extra">
+      <label>Table:</label>
+      <select id="tableSelect">
+        <option value="Takeaway">Takeaway</option>
+        <option value="Table 1">Table 1</option>
+        <option value="Table 2">Table 2</option>
+        <option value="Table 3">Table 3</option>
+        <option value="Table 4">Table 4</option>
+      </select>
+    </div>
+
+    <!-- 🔹 New Customer Info -->
+    <div class="cart-extra">
+      <label>Customer Name:</label>
+      <input type="text" id="customerNameInput" placeholder="Optional"/>
+    </div>
+
+    <div class="cart-extra">
+      <label>Phone Number:</label>
+      <input type="text" id="customerPhoneInput" placeholder="Optional"/>
+    </div>
+
+    <div class="cart-total">
+      <h4>Subtotal: ₹<span id="cartSubtotal">0</span></h4>
+      <h4>Discount: ₹<span id="cartDiscount">0</span></h4>
+      <h3>Total: ₹<span id="cartTotal">0</span></h3>
+    </div>
+
+    <div class="cart-buttons">
+      <button id="kotBtn">Print KOT</button>
+      <button id="printBtn">Print & Save Bill</button>
+      <!-- 🔹 New Live Table Button -->
+      <button id="liveTableBtn" class="live-table-btn">Live Tables</button>
+    </div>
+
+    <!-- 🔹 Split Bill & Park/Resume -->
+    <div class="cart-buttons">
+      <button id="splitItemBtn" onclick="splitBillByItem()">Split by Item</button>
+      <button id="splitAmountBtn" onclick="splitBillByAmount()">Split by Amount</button>
+    </div>
+
+    <div class="cart-buttons">
+      <button id="parkBillBtn" onclick="parkBill()">Park Bill</button>
+      <button id="resumeBillBtn" onclick="resumeBill()">Resume Bill</button>
+    </div>
+
+    <!-- 🔹 Merge & Transfer -->
+    <div class="cart-buttons">
+      <button id="mergeTableBtn" onclick="mergeTables(1,2)">Merge Table 1 & 2</button>
+      <button id="moveTableBtn" onclick="transferTable(1,3)">Move Table 1 to Table 3</button>
+    </div>
+
+    <!-- 🔹 Table Occupancy Timer -->
+    <p>Table 1 Occupied: <span id="time1"></span></p>
+    <script>
+      setInterval(() => {
+        document.getElementById("time1").innerText = getTableTime(1);
+      }, 1000);
+    </script>
+
+    <!-- 🔹 Reports -->
+    <div class="cart-buttons">
+      <button onclick="generateReport('daily')">Daily Report</button>
+      <button onclick="generateReport('weekly')">Weekly Report</button>
+    </div>
+    <div id="reportBox"></div>
+
+    <div class="previous-order">
+      <h4>Previous Bill</h4>
+      <div id="previousOrderCard" class="prev-bill-card"></div>
+    </div>
+  </aside>
+</main>
+
+<!-- 🔹 Live Tables Modal -->
+<div id="liveTableModal" class="modal">
+  <div class="modal-content">
+    <span id="closeTableModal" class="close">&times;</span>
+    <h3>Select a Table</h3>
+
+    <!-- ✅ Simplified clickable table buttons with totals -->
+    <div class="tables-grid">
+      <div class="table-btn" data-table="Table 1">
+        Table 1
+        <div class="table-total" id="total-Table1">₹0.00</div>
+      </div>
+      <div class="table-btn" data-table="Table 2">
+        Table 2
+        <div class="table-total" id="total-Table2">₹0.00</div>
+      </div>
+      <div class="table-btn" data-table="Table 3">
+        Table 3
+        <div class="table-total" id="total-Table3">₹0.00</div>
+      </div>
+      <div class="table-btn" data-table="Table 4">
+        Table 4
+        <div class="table-total" id="total-Table4">₹0.00</div>
+      </div>
+      <div class="table-btn" data-table="Table 5">
+        Table 5
+        <div class="table-total" id="total-Table5">₹0.00</div>
+      </div>
+      <div class="table-btn" data-table="Table 6">
+        Table 6
+        <div class="table-total" id="total-Table6">₹0.00</div>
+      </div>
+      <div class="table-btn" data-table="Table 7">
+        Table 7
+        <div class="table-total" id="total-Table7">₹0.00</div>
+      </div>
+      <div class="table-btn" data-table="Table 8">
+        Table 8
+        <div class="table-total" id="total-Table8">₹0.00</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2025 Street Magic Restaurant</p>
+</footer>
+
+<!-- 🔹 Linked POS + Live Tables Logic -->
+<script src="js/menu.js"></script>
+</body>
+</html>
